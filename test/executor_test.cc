@@ -1,5 +1,4 @@
 #include <cctest/cctest.h>
-#include <mockcpp/mockcpp.hpp>
 #include "executor/executor.h"
 #include "executor_id.h"
 #include "mcl/log.h"
@@ -11,6 +10,7 @@ FIXTURE(ExecutorTest) {
 
 	AFTER{
 		MCL_INFO("TEST TEARDOWN");
+		reset();
 	}
 
 	TEST("should get executor name") {
@@ -19,9 +19,13 @@ FIXTURE(ExecutorTest) {
 		MCL_SUCC("TEST SUCCESS!");
 	}
 
-    TEST("should get exeuctor name by mock id") {
-	    MOCKER(executor_id_generate).expects(once()).will(returnValue(1));
-        ASSERT_EQ(1, executor_get_id());
-        GlobalMockObject::verify();
+    TEST("should get executor id increase") {
+        ASSERT_EQ(0, executor_id_generate(INCREASE));
+        ASSERT_EQ(1, executor_id_generate(INCREASE));
+    }
+
+    TEST("should get executor id decrease") {
+        ASSERT_EQ( MAX_ID_NUM - 1, executor_id_generate(DECREASE));
+        ASSERT_EQ(MAX_ID_NUM - 2, executor_id_generate(DECREASE));
     }
 };

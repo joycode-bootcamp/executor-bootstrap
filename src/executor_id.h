@@ -5,7 +5,14 @@
 
 MCL_STDC_BEGIN
 
-int executor_id_generate();
+typedef enum ALLOC_TYPE{
+    INCREASE, DECREASE, NOT_SET
+}ALLOC_TYPE;
+
+#define MAX_ID_NUM 1000
+
+int executor_id_generate(ALLOC_TYPE type);
+void reset();
 
 MCL_STDC_END
 

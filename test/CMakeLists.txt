@@ -10,12 +10,6 @@ CPMAddPackage(
     GIT_TAG master
 )
 
-CPMAddPackage(
-    NAME mockcpp
-    GITHUB_REPOSITORY ccup/mockcpp
-    GIT_TAG master
-)
-
 # ---- Source files of test ----
 
 file(GLOB_RECURSE SOURCES 
@@ -29,7 +23,7 @@ target_include_directories(${TEST_TARGET}
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
             ${PROJECT_SOURCE_DIR}/src)
 
-target_link_libraries(${TEST_TARGET} PRIVATE ${TARGET_LIB} cctest_main mockcpp)
+target_link_libraries(${TEST_TARGET} PRIVATE ${TARGET_LIB} cctest_main )
 
 set_target_properties(${TEST_TARGET} PROPERTIES CXX_STANDARD 14)
 target_compile_definitions(${TEST_TARGET} PRIVATE CUSTOMER_LOG)
