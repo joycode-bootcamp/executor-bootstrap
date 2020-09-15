@@ -4,7 +4,6 @@ CPMAddPackage(
     NAME mcl
     GITHUB_REPOSITORY ccup/mcl
     GIT_TAG master
-    OPTIONS "ENABLE_TEST off"
 )
 
 CPMAddPackage(
