@@ -71,7 +71,7 @@ function test() {
 function clean() {
     echo "Start to clean ${project}"
     echo "============================"
-    cd build/
+    cd $build
     ls | grep -v _deps | xargs rm -rf 
     cd -
     echo "SUCCESS!" 
