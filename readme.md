@@ -8,7 +8,26 @@ The bootstrap c/c++ project of design bootcamp.
 $ git clone git@github.com:joycode-bootcamp/executor-bootstrap.git
 $ cd executor-bootstrap
 $ chmod a+x ./ccup.sh
-$ ./ccup.sh -ubt
+```
+
+- build&test
+
+Make sure that docker is pre installed on the system.
+
+```sh
+$ cd executor-bootstrap
+
+# launch docker environment, wait until the image download completely.
+./ccup.sh -e
+
+# update the dependent codes
+$ ./ccup.sh -u
+
+# build
+$ ./ccup.sh -b
+
+# test
+$ ./ccup.sh -b
 ```
 
 - usage
