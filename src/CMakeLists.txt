@@ -18,6 +18,12 @@ CPMAddPackage(
     GIT_TAG master
 )
 
+CPMAddPackage(
+    NAME wifi-intf
+    GITHUB_REPOSITORY joycode-bootcamp/wifi-intf
+    GIT_TAG master
+)
+
 # ---- Collect all src files except main.c ----
 
 file(GLOB_RECURSE MAIN_FILE 
