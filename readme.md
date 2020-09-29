@@ -45,23 +45,32 @@ $ ./ccup.sh -b
 # update & build
 ./ccup.sh -ub
 
-# run executable
-./ccup.sh -r
-
 # run tests
 ./ccup.sh -t
-
-# clean build
-./ccup.sh -c
-
-# clean all
-./ccup.sh -C
 
 # build & test
 ./ccup.sh -bt
 
 # update & build & test
 ./ccup.sh -ubt
+
+# run executable
+./ccup.sh -r
+
+# install
+./ccup.sh -i
+
+# build & install
+./ccup.sh -bi
+
+# update & build & install
+./ccup.sh -ubi
+
+# clean build
+./ccup.sh -c
+
+# clean all
+./ccup.sh -C
 
 # help
 ./ccup.sh -h
