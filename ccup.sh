@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # project config
-project="executor"
+project_path=$(cd "$(dirname "$0")"; pwd)
+project_name="${project_path##*/}"
 build="build"
 deps_cache="./deps"
 docker_image="magicbowen/ubuntu-cc-dev:v1"
-project_home=$(cd "$(dirname "$0")"; pwd)
 
 # output utils
 command_exists() {
@@ -33,18 +33,18 @@ splider() {
 }
 
 start_exec() {
-    info "START: $@ ${project}"
+    info "START: $@ ${project_name}"
     splider
 }
 
 success_exec() {
     splider
-    success "$@ ${project}!"
+    success "$@ ${project_name}!"
 }
 
 failed_exec() {
     splider
-    error "$@ ${project}!"
+    error "$@ ${project_name}!"
 }
 
 setup_color() {
@@ -90,8 +90,8 @@ function env() {
 		error "docker is not installed"
 		exit 1
 	}  
-    docker pull $docker_image
-    docker run -it -v $project_home:/$project --user $(id -u):$(id -g) -w /$project $docker_image /bin/bash
+    # docker pull $docker_image
+    docker run -it -v $project_path:/$project_name --user $(id -u):$(id -g) -w /$project_name $docker_image /bin/bash
     if [ $? -ne 0 ]; then
         failed_exec "setup environment"
         exit 1
@@ -131,7 +131,7 @@ function build() {
 
 function test() {
     start_exec "test"
-    ./$build/test/${project}_test
+    ./$build/test/${project_name}_test
 
     if [ $? -ne 0 ]; then
         failed_exec "test"
@@ -153,7 +153,7 @@ function install() {
 
 function run() {
     start_exec "run"
-    ./$build/src/${project}_service
+    ./$build/src/${project_name}_service
 }
 
 function clean() {
@@ -161,7 +161,7 @@ function clean() {
     if [ -d "build" ]; then 
         cd $build
         ls | grep -v _deps | xargs rm -rf
-        info "deleting the build targets of ${project}"
+        info "deleting the build targets of ${project_name}"
         cd -
     fi
     success_exec "clean"
@@ -169,9 +169,9 @@ function clean() {
 
 function clean_all() {
     start_exec "clean all"
-    info "deleting the build targets of ${project}"
+    info "deleting the build targets of ${project_name}"
     rm -rf build/*
-    info "deleting the dependent codes of ${project}"
+    info "deleting the dependent codes of ${project_name}"
     rm -rf deps/*
     success_exec "clean all"
 }

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 # ---- Project ----
 
-project(executor VERSION 1.0.0)
+project(executor-bootstrap VERSION 1.0.0)
 
 set(TARGET_LIB ${PROJECT_NAME})
 
