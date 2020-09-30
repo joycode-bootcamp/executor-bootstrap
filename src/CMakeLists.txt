@@ -47,7 +47,7 @@ endif()
 
 add_library(${TARGET_LIB} ${LIB_TYPE} ${SOURCES})
 
-target_link_libraries(${TARGET_LIB} PUBLIC mcl alert-intf clean-intf)
+target_link_libraries(${TARGET_LIB} PUBLIC mcl alert-intf clean-intf wifi-intf)
 
 target_include_directories(${TARGET_LIB}
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/deps
