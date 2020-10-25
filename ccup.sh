@@ -105,7 +105,7 @@ function update() {
 		exit 1
 	} 
     export GIT_SSL_NO_VERIFY=1
-    cmake -H. -B$build -DENABLE_TEST=on -DCPM_SOURCE_CACHE=$deps_cache
+    cmake -H. -B$build -DPROJECT_NAME=${project_name} -DENABLE_TEST=on -DCPM_SOURCE_CACHE=$deps_cache
     if [ $? -ne 0 ]; then
         failed_exec "update"
         exit 1
