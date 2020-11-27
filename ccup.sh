@@ -6,7 +6,7 @@ project_name="${project_path##*/}"
 build="build"
 cpm_cache="./deps"
 doc_gitbook="./docs/gitbook"
-docker_image="docker-hub.tools.huawei.com/hcde-paulus/hcde_paulus_image:v1.0"
+docker_image="magicbowen/ubuntu-cc-dev:v2"
 
 if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
     docker_cmd="winpty docker"
