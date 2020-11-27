@@ -27,7 +27,7 @@ $ ./ccup.sh -u
 $ ./ccup.sh -b
 
 # test
-$ ./ccup.sh -b
+$ ./ccup.sh -t
 ```
 
 - usage
