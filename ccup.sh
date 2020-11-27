@@ -8,13 +8,22 @@ cpm_cache="./deps"
 doc_gitbook="./docs/gitbook"
 docker_image="magicbowen/ubuntu-cc-dev:v2"
 
-if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+if [ "$(uname)" == "Darwin" ]; then
+    #running on Mac OS
+    docker_cmd=docker
+    docker_src_path="$project_path"
+    docker_work_dir="/$project_name"
+    cmake_generate_type=""
+    cmake_extra_definations=    
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ] || [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    #running on Windows
     docker_cmd="winpty docker"
     docker_src_path="/$project_path"
     docker_work_dir="//$project_name"
     cmake_generate_type='-GMinGW Makefiles'
-    cmake_extra_definations="-DCMAKE_SH=CMAKE_SH-NOTFOUND"
-else
+    cmake_extra_definations="-DCMAKE_SH=CMAKE_SH-NOTFOUND"    
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    #running on Linux
     docker_cmd=docker
     docker_src_path="$project_path"
     docker_work_dir="/$project_name"
@@ -147,7 +156,7 @@ function build() {
 
 function test() {
     start_exec "test"
-    find ./$build -perm /+x -type f -name "*_test*"  -exec {} \;
+    find ./$build -perm -111 -type f -name "*_test"  -exec {} \;
 
     if [ $? -ne 0 ]; then
         failed_exec "test"
