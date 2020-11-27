@@ -14,7 +14,6 @@ if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
     docker_work_dir="//$project_name"
     cmake_generate_type='-GMinGW Makefiles'
     cmake_extra_definations="-DCMAKE_SH=CMAKE_SH-NOTFOUND"
-    
 else
     docker_cmd=docker
     docker_src_path="$project_path"
